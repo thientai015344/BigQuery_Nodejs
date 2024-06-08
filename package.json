@@ -1,0 +1,31 @@
+{
+  "name": "bigquery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thientai015344/BigQuery_Nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thientai015344/BigQuery_Nodejs/issues"
+  },
+  "homepage": "https://github.com/thientai015344/BigQuery_Nodejs#readme",
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.7.1",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "handlebars": "^4.7.8",
+    "nodemon": "^3.1.2"
+  },
+  "devDependencies": {
+    "multer": "^1.4.5-lts.1"
+  }
+}

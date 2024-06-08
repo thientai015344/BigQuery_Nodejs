@@ -1,0 +1,56 @@
+<%-include('../layout/admin/header.ejs') %>
+
+<style>
+  input#nameTopic {
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #000;
+    padding-left: 10px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .card-content {
+    padding: 10px;
+    /* max-width: 624px; */
+}
+
+  .container-fluid {
+    max-width: 652px;
+    text-align: end;
+}
+.card {background-color: transparent;}
+</style>
+
+<div class="clearfix"></div>
+	
+
+  <div style="text-align: center;" class="content-wrapper">
+    <h2>
+      Create New Topic
+    </h2>
+    <div class="container-fluid">
+      <div class="card mt-3">
+        <div class="card-content">
+          
+          <form class="input-form" action="/admin/createNewTopic" method="post">
+
+            <div class="form-addd--topic form-group">
+              <label for="nameTopic" class="sr-only">Name Topic</label>
+              <input type="text" class="form-control-plaintext" id="nameTopic" name="nameTopic" >
+            </div>
+        
+            <!-- <div class="form-group mb-2">
+              <label for="nameTopic" class="sr-only">Name Topic</label>
+              <input type="text" readonly class="form-control-plaintext" id="nameTopic" >
+            </div> -->
+            <button type="submit" class="btn btn-primary mb-2">Save</button>
+          </form>
+
+        </div>
+
+      </div> 
+    </div>
+  </div>
+<%-include('../layout/admin/footer.ejs') %>
