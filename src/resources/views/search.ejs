@@ -2,12 +2,13 @@
 
 <style>
 .SearchPage{
+  max-width: 1140px ;
+  margin: 30px auto 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  justify-content: center;
   align-items: center;
-  height: 20vh;
+  max-height: 80vh;
 }
 
 div#divformSearch {
@@ -22,7 +23,6 @@ div#divformSearch {
 #divformSearch .text-container {
   display: flex;
   justify-content: space-between;
-  width: 400px;
   border: 1px solid gray;
   border-radius: 20px;
   padding: 15px 20px;
@@ -64,21 +64,72 @@ svg {
   color: #70757a;
 }
 
+form#search-form {
+  display: flex;
+  justify-content: space-between;
+}
 
+button {
+    border: 0;
+}
 
+#results{
+  width: 100%;
+  max-height: 60vh;
+  overflow-y: scroll;
+}
 
+img{
+  max-height: 100%;
+}
 
 </style>
-
-<div class="SearchPage">
-
-    <div id="divformSearch" class="container">
+<div class="container SearchPage">
+     <div id="divformSearch" class="container">
       <div class="text-container">
-          <input type="text" id="search-input">
-          <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-      </div>
-      
+        <form id="search-form" method="GET" action="/search">
+            <input type="text" id="search-input" name="query" required value="<%= query %>">
+            
+            <!-- Thêm dropdown để chọn loại tìm kiếm -->
+            <select id="search-type" name="type">
+                <option value="">Tìm theo</option>
+                <option value="Title">Tên</option>
+                <option value="Topic">Chủ đề</option>
+                <option value="date">Ngày</option>
+            </select>
+            
+            <button type="submit">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+            </button>
+        </form>
     </div>
+    </div>
+
+    <% if (data && data.length > 0) { %>
+      <div class="row" id="results">
+          <% data.forEach(item => { %>
+            <div class="col-lg-12">
+              <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                <img class="img-fluid" src="<%=item.Image%>" alt="">
+                <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                  <div class="mb-2">
+                      <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="/category/<%= item.IdTopic %>"><%=item.NameTopic%></a>
+                      <a class="text-body" href=""><small><%=item.Created_at%></small></a>
+                  </div>
+                  <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href=""><%=item.Title%></a>
+                </div>
+              </div>  
+            </div>
+              <!-- <p><%= item %></p> -->
+          <% }) %>
+      </div>
+  <% } else if (query) { %>
+      <p>No results found for "<%= query %>".</p>
+  <% } %>
+
+
 </div>
 
 <%-include('layout/footer.ejs') %>

@@ -39,13 +39,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
+                    <% for(var i=0; i < data.length; i++) { %>
                         
-                    </tr>
+                        <tr>
+                            <td><form action="/admin/delete-topic/<%= data[i].Id %>"  method="POST" onsubmit="return confirmDelete();" style="display:inline;">
+                                <button type="submit">Delete</button>
+                        </form>
+                        <form action="/admin/topic-post/<%= data[i].Id %>" method="GET" style="display:inline;">
+                            <button type="submit">Edit</button>
+                        </form></td>
+                            <td><%= data[i].NameTopic%></td>
+                            <td><%= data[i].Created_at%></td>
+                            <td><%= data[i].Updated_at%></td>
+                            
+                        </tr>
+                     <% } %>
                    
                 </tbody>
                 <tfoot>
